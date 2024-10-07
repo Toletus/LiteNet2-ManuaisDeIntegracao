@@ -1,6 +1,7 @@
 # MANUAL DE COMANDOS - Toletus LiteNet2
 
-**Firmware V2.1.1 R0**
+**Versão Firmware V2.1.1 R0**
+**Versão Manual V1.0.22**
 
 
 ## SUMÁRIO
@@ -57,14 +58,9 @@ RJ45 através do protocolo TPC/IP em modo IPV4 disponibilizando os seguintes ser
 | 7878  | Interface com a catraca                  |
 | 7879  | Interface com o dispositivo de biometria |
 
-```
 Este manual detalha a especificação da interface de comandos com da catraca na porta 7878.
 Para comunicação direta com dispositivo de biometria, conecte-se com a porta 7879 e utilize
 os comando disponíveis na documentação do fabricante.
-```
-```
-Versão deste manual. V1.0.22.
-```
 
 ## 2 INTERFACE DE COMANDOS <a name="interface-de-comandos"></a>
 
@@ -78,13 +74,11 @@ de outra forma:
 
 ### 2.1 ESTRUTURA DE PACOTES <a name="estrutura-de-pacotes"></a>
 
-```
 Todos os pacotes possuem o formato definido abaixo:
-```
 
-| Prefixo | Identificação de comando | Dados   | Sufixo  |
-|---------|---------------------------|---------|---------|
-| 1 byte  | 2 bytes                   | 16 bytes | 1 byte  |
+| Prefixo | Identificação de comando   | Dados    | Sufixo  |
+|---------|----------------------------|----------|---------|
+| 1 byte  | 2 bytes                    | 16 bytes | 1 byte  |
 
 Os campos `Prefixo` e `Sufixo` devem sempre ser os números 83 e 195 respectivamente.
 Todos os pacotes que violarem esta regra serão ignorados.
@@ -96,33 +90,59 @@ argumentos. É boa pratica que este espaço remanescente seja preenchido com zer
 
 ### 2.2 LISTA DE COMANDOS <a name="lista-de-comandos"></a>
 
-| Descrição                                 | Id. de comando | Direção   | Argumentos                                    |
-|-------------------------------------------|----------------|-----------|-----------------------------------------------|
-| libera entrada                            | 0x0001         | >placa    | texto de 16 caracteres                        |
-| libera saída                              | 0x0002         | >placa    | texto de 16 caracteres                        |
-| reinicia                                  | 0x0003         | >placa    |                                               |
-| mensagem temporária                       | 0x0004         | >placa    | texto de 16 caracteres                        |
-| notifica usuário                          | 0x0005         | >placa    | Tempo (2 bytes), Beep (1 byte), Leds (1 byte) |
-| libera bidirecional                       | 0x0006         | >placa    | texto de 16 caracteres                        |
-| reset de periférico (biometria)           | 0x0007         | >placa    |                                               |
-| consulta direção                          | 0x0101         | >placa    | número de 1 byte                              |
-| consulta controle                         | 0x0102         | >placa    | número de 1 byte                              |
-| consulta id de dispositivo                | 0x0103         | >placa    | número de 2 bytes                             |
-| consulta configuração de rede             | 0x0104         | >placa    | ip (4 bytes), máscara (4 bytes)               |
-| consulta número MAC                       | 0x0105         | >placa    | MAC (6 bytes)                                 |
-| consulta mensagem da tela inicial linha 1 | 0x0106         | >placa    | texto de 16 caracteres                        |
-| consulta mensagem da tela inicial linha 2 | 0x0107         | >placa    | texto de 16 caracteres                        |
-| consulta modo de tela inicial             | 0x0108         | >placa    | número de 1 byte                              |
-| consulta silenciar buzzer                 | 0x0109         | >placa    | número de 1 byte                              |
-| consulta tempo de liberação               | 0x010A         | >placa    | número de 4 bytes                             |
-| consulta senha do menu                    | 0x010B         | >placa    | texto de 16 caracteres *                      |
-| consulta versão de firmware               | 0x010C         | >placa    | 4 bytes                                       |
-| consulta número serial                    | 0x010D         | >placa    | número de 4 bytes                             |
-| consulta modo de biometria                | 0x010E         | >placa    | número de 1 byte                              |
-| consulta modo de controle estendido       | 0x010F         | >placa    | número de 1 byte                              |
-| consulta contador de giros                | 0x0110         | >placa    | número de 4 bytes                             |
-| consulta flags de hardware                | 0x0111         | >placa    | campo de 16 bytes                             |
-| consulta estados de inicialização         | 0x0112         | >placa    | número de 2 bytes (extensível)                |
+
+| Descrição                                           | Id. de comando   | Direção  | Argumentos                     |                   |                   |              
+|-----------------------------------------------------|:-----------------|----------|--------------------------------|:------------------|:------------------|
+| libera entrada                                      | 0x0001           | >placa   | texto de 16 caracteres         |                   |                   |              
+| libera saída                                        | 0x0002           | >placa   | texto de 16 caracteres         |                   |                   |              
+| reinicia                                            | 0x0003           | >placa   |                                |                   |                   |
+| mensagem temporária                                 | 0x0004           | >placa   | texto de 16 caracteres         |                   |                   |
+| notifica usuário                                    | 0x0005           | >placa   | Tempo = Numero 2 bytes         | Beep= 1 byte      | Leds = 1byte      |
+| libera bidirecional                                 | 0x0006           | >placa   | texto de 16 caracteres         |                   |                   |
+| reset de periférico (biometria)                     | 0x0007           | >placa   |                                |                   |                   |
+| consulta direção                                    | 0x0101           | >placa>  | numero de 1 byte               |                   |                   |
+| consulta controle                                   | 0x0102           | >placa>  | numero de 1 byte               |                   |                   |
+| consulta id de dispositivo                          | 0x0103           | >placa>  | numero de 2 bytes              |                   |                   |
+| consulta configuração de rede                       | 0x0104           | >placa>  | numero de 1 byte               | ip = 4 bytes      | mascara = 4 bytes |
+| consulta numero mac                                 | 0x0105           | >placa>  | mac = 6 bytes                  |                   |                   |
+| consulta mensagem da tela inicial linha 1           | 0x0106           | >placa>  | texto de 16 caracteres         |                   |                   |
+| consulta mensagem da tela inicial linha 2           | 0x0107           | >placa>  | texto de 16 caracteres         |                   |                   |
+| consulta modo de tela inicial                       | 0x0108           | >placa>  | numero de 1 byte               |                   |                   |
+| consulta silenciar buzzer                           | 0x0109           | >placa>  | numero de 1 byte               |                   |                   |
+| consulta tempo de liberação                         | 0x010a           | >placa>  | numero de 4 bytes              |                   |                   |
+| consulta senha do menu                              | 0x010b           | >placa>  | texto de 16 caracteres \*      |                   |                   |
+| consulta versão de firmware                         | 0x010c           | >placa>  | 4 bytes                        |                   |                   |
+| consulta numero serial                              | 0x010d           | >placa>  | numero de 4 bytes              |                   |                   |
+| consulta modo de biometria                          | 0x010e           | >placa>  | numero de 1 byte               |                   |                   |
+| consulta modo de controle estendido                 | 0x010f           | >placa>  | numero de 1 byte               | numero de 1 byte  |                   |
+| consulta contador de giros                          | 0x0110           | >placa>  | numero de 4 bytes              | numero de 4 bytes |                   |
+| consulta flags de hardware                          | 0x0111           | >placa>  | Campo de 16 bytes              |                   |                   |
+| consulta estados de inicialização                   | 0x0112           | >placa>  | numero de 2 bytes (extensível) |                   |                   |
+| configura direção                                   | 0x0201           | >placa   | numero de 1 byte               |                   |                   |
+| configura controle                                  | 0x0202           | >placa   | numero de 1 byte               |                   |                   |
+| configura id de dispositivo                         | 0x0203           | >placa   | numero de 2 bytes              |                   |                   |
+| configura configuração de rede                      | 0x0204           | >placa   | numero de 1 byte               | ip = 4 bytes      | mascara = 4 bytes |
+| configura numero mac                                | 0x0205           | >placa   | mac = 6 bytes                  |                   |                   |
+| configura mensagem da tela inicial linha 1          | 0x0206           | >placa   | texto de 16 caracteres         |                   |                   |
+| configura mensagem da tela inicial linha 2          | 0x0207           | >placa   | texto de 16 caracteres         |                   |                   |
+| configura modo de tela inicial                      | 0x0208           | >placa   | numero de 1 byte               |                   |                   |
+| configura silenciar buzzer                          | 0x0209           | >placa   | numero de 1 byte               |                   |                   |
+| configura tempo de liberação                        | 0x020a           | >placa   | numero de 4 bytes              |                   |                   |
+| configura senha do menu                             | 0x020b           | >placa   | texto de 16 caracteres \*      |                   |                   |
+| configura versão de firmware (não utilizado)        | 0x020c           |          | -                              |                   |                   |
+| configura numero serial (não utilizado)             | 0x020d           |          | -                              |                   |                   |
+| configura modo de biometria                         | 0x020e           | >placa   | numero de 1 byte               |                   |                   |
+| configura modo de controle estendido                | 0x020f           | >placa   | numero de 1 byte               | numero de 1 byte  |                   |
+| configura zero o contador de giros                  | 0x0210           | >placa   |                                |                   |                   |
+| configura flags de hardware                         | 0x0211           | >placa   | Campo de 16 bytes              |                   |                   |
+| configura estados de inicialização (não utilizado)  | 0x0212           |          | -                              |                   |                   |
+| notificação de id com rfid                          | 0x0301           | placa>   | texto de 16 caracteres \*      |                   |                   |
+| notificação de id com código de barras              | 0x0302           | placa>   | texto de 16 caracteres \*      |                   |                   |
+| notificação de id com teclado                       | 0x0303           | placa>   | texto de 16 caracteres \*      |                   |                   |
+| notificação de passagem pela catraca                | 0x0304           | placa>   | 1 byte                         | 4 bytes           |                   |
+| notificação de timeout de liberação                 | 0x0305           | placa>   |                                |                   |                   |
+| notificação de id com biometria                     | 0x0306           | placa>   | numero de 2 bytes              |                   |                   |
+| notificação de template de biometria não cadastrado | 0x0307           | placa>   |                                |                   |                   |
 
 ### 2.3 DETALHES DE COMANDOS <a name="detalhes-de-comandos"></a>
 
@@ -142,7 +162,7 @@ Libera catraca na direção de entrada com mensagem opcional. As configurações
 direção são definidas no capítulo 2.3.2.1.
 Firmware V2.0.0 R0 e posteriores.
 
-Argumentos:
+**Argumentos:**
 1) mensagem.
    A mensagem deve ser codificada em ASCII e com no máximo 16 caracteres de
    comprimento. Caso a mensagem não seja desejada, o campo deve ser preenchido com zeros.
@@ -204,30 +224,27 @@ Argumentos:
    Número de 8 bits que define a cor dos leds do painel durante a notificação. Os códigos
    de cores são definidos conforme a tabela abaixo:
 
-```
-Valor Cor
-0 Não muda de cor
-1 Vermelho
-2 Verde à direita
-3 Verde à esquerda
-4 Azul
-5 Verde dos dois lados
-6 Ciano
-7 Magenta
-```
+| Valor | Cor                  |
+|-------|----------------------|
+| 0     | Não muda de cor      |      
+| 1     | Vermelho             |     
+| 2     | Verde à direita      |    
+| 3     | Verde à esquerda     |   
+| 4     | Azul                 |  
+| 5     | Verde dos dois lados | 
+| 6     | Ciano                |
+| 7     | Magenta              |
+| 8     | Amarelo              |
 
-```
-8 Amarelo
-```
 4) Mostrar texto.
    Número de 8 bits que define se a mensagem de notificação de usuário (2.3.1.5) deve ser
    mostrada no painel.
 
-```
-Valor Descrição
-0 Não mostra mensagem
-!= 0 Mostra mensagem
-```
+| Valor | Descrição           |
+|-------|---------------------|
+| 0     | Não mostra mensagem |
+| != 0  | Mostra mensagem     |
+
 ##### 2.3.1.6 Libera bidirecional (0x0006) <a name="libera-bidirecional"></a>
 
 Libera um giro da catraca, ou na direção de entrada, ou na direção de saída. Uma
@@ -282,13 +299,11 @@ Argumentos:
 1) Direção de entrada.
    Número de 8 bits que estabelece a atribuição de direção.
 
-```
-Valor Descrição
-0 Entrada no sentido horário
-Saída no sentido anti-horário
-!= 0 Entrada no sentido anti-horário
-Saída no sentido horário
-```
+| Valor  | Descrição                                                 |
+|--------|-----------------------------------------------------------|
+| 0      | Entrada no sentido horário, Saída no sentido anti-horário |
+| != 0   | Entrada no sentido anti-horário, Saída no sentido horário |
+
 ##### 2.3.2.2 Controle(0x0102, 0x0202) <a name="controle"></a>
 
 Estabelece o controle de permissões de fluxo da catraca. A catraca pode gerenciar a
@@ -302,26 +317,25 @@ configuradas de duas maneiras possíveis:
 ```
 único giro a cada comando de liberação (2.3.1.1, 2.3.1.2 e 2.3.1.6).
 ```
+
 ATUALIZAÇÃO:
 A configuração de controle é mantida por retrocompatibilidade. Considere utilizar o
 modo de controle estendido (2.3.2.15).
 Firmware V2.0.0 R0 e posteriores.
+
 Argumentos:
+
 1) Modo.
    Número de 8 bits que estabelece as permissões de fluxo. A configuração de entrada/saída
    é definida conforme a tabela abaixo:
 
-```
-Valor Descrição
-0 Entrada livre
-Saída livre
-1 Entrada controlada
-Saída livre
-2 Entrada livre
-Saída controlada
-3 Entrada controlada
-Saída controlada
-```
+| Valor | Descrição                            |
+|-------|--------------------------------------|
+| 0     | Entrada livre, Saída livre           |
+| 1     | Entrada controlada, Saída livre      |
+| 2     | Entrada livre, Saída controlada      |
+| 3     | Entrada controlada, Saída controlada |
+
 ##### 2.3.2.3 Id de dispositivo (0x0103, 0x0203) <a name="id-dispositivo"></a>
 
 O id de dispositivo permite ao anfitrião numerar cada catraca para facilitar sua
@@ -329,7 +343,8 @@ identificação, em um ambiente com múltiplas catracas.
 Firmware V2.0.0 R0 e posteriores.
 
 Argumentos:
-1) Id.
+1) 
+2) Id.
    Número de 16 bits. Este número pode ser configurado livremente.
 
 ##### 2.3.2.4 Configuração de rede (0x0104, 0x0204) <a name="configuracao-rede"></a>
@@ -393,17 +408,15 @@ catraca em cada direção.
 Firmware V2.0.0 R0 e posteriores.
 
 Argumentos:
+
 1) Modo.
    Número de 8 bits. Estabelece o conteúdo da pagina inicial conforme a tabela abaixo:
 
-```
-Valor Descrição
-```
+| Valor | Descrição  |
+|-------|------------|
+| 0     | Mensagens  |
+| 1     | Contadores |
 
-```
-0 Mensagens
-1 Contadores
-```
 ##### 2.3.2.9 Silenciar buzzer (0x0109, 0x0209) <a name="silenciar-buzzer"></a>
 
 É possível silenciar o Buzzer. Esta configuração silencia apenas os sons padrões, os
@@ -414,11 +427,11 @@ Parâmetros:
 1) Silenciar.
    Número de 8 bits.
 
-```
-Valor Descrição
-0 Não silenciar
-!= 0 Silenciar
-```
+| Valor | Descrição     |
+|-------|---------------|
+| 0     | Não silenciar |
+| != 0  | Silenciar     |
+
 ##### 2.3.2.10 Tempo de liberação (0x010A, 0x020A) <a name="tempo-liberacao"></a>
 
 Quando um comando de liberação (8, 9 e 11) é enviado, a catraca irá permitir uma
@@ -482,11 +495,11 @@ Argumentos:
 1) Modo.
    Numero de 8 bits.
 
-```
-Valor Descrição
-0 Automático
-!= 0 Apenas local
-```
+| Valor | Descrição      |
+|-------|----------------|
+| 0     | Automático     |
+| != 0  | Apenas local   |
+
 ##### 2.3.2.15 Modo de controle estendido (0x010F, 0x020F) <a name="modo-controle-ext"></a>
 
 Estabelece o controle de permissões de fluxo da catraca. A catraca pode gerenciar a
@@ -507,36 +520,32 @@ Argumentos:
 1) Modo;
    Numero de 8 bits. Configuração conforme tabela abaixo:
 
-```
-Valor Descrição
-Entrada Saída
-0 Controlada Liberada
-1 Controlada Bloqueada
-2 Controlada Controlada
-3 Liberada Controlada
-4 Bloqueada Controlada
-5 Liberada Liberada
-6 Liberada Bloqueada
-7 Bloqueada Liberada
-8 Bloqueada Bloqueada
-```
-```
+| Valor | Descrição             |
+|-------|-----------------------|
+| 0     | Controlada Liberada   |
+| 1     | Controlada Bloqueada  |
+| 2     | Controlada Controlada |
+| 3     | Liberada Controlada   |
+| 4     | Bloqueada Controlada  |
+| 5     | Liberada Liberada     |
+| 6     | Liberada Bloqueada    |
+| 7     | Bloqueada Liberada    |
+| 8     | Bloqueada Bloqueada   |
+
 2) Controle de pictograma. Os pictogramas podem ser ligados/desligados conforme a
-tabela abaixo:
-Valor Descrição
-Entrada Saída
-0 Ligado Ligado
-1 Ligado Desligado
-2 Desligado Ligado
-3 Desligado Desligado
-```
+   tabela abaixo:
+
+<table><tr><th colspan="1" rowspan="2" valign="top">Valor </th><th colspan="2">Descrição </th></tr>
+<tr><td colspan="1">Entrada</td><td colspan="1">Saída</td></tr>
+<tr><td colspan="1">0 </td><td colspan="1">Ligado </td><td colspan="1">Ligado </td></tr>
+<tr><td colspan="1">1 </td><td colspan="1">Ligado </td><td colspan="1">Desligado </td></tr>
+<tr><td colspan="1">2 </td><td colspan="1">Desligado </td><td colspan="1">Ligado </td></tr>
+<tr><td colspan="1">3 </td><td colspan="1">Desligado </td><td colspan="1">Desligado </td></tr>
+</table>
+
 ##### 2.3.2.16 Contador de giros (0x0110, 0x0210) <a name="contador-giros"></a>
 
-```
-Este parâmetro registra a quantidade de passagens de entrada e de saída. Comandos de
-```
-
-escrita (0x0110) para este parâmetro são tratadas como zeramento.
+Este parâmetro registra a quantidade de passagens de entrada e de saída. Comandos deescrita (0x0110) para este parâmetro são tratadas como zeramento.
 Firmware V2.1.0 R0 e posteriores.
 
 Argumentos:
@@ -550,11 +559,12 @@ Argumentos:
 Estas flags possuem detalhes técnicos de configuração de dispositivos de hardware. A
 tabela abaixo detalha cada flag. Todas as flags são empacotadas em um vetor de bits.
 
-```
-Nome Posição Valor
-0 1
-RDM6300_ALT_PROT 0 Protocolo padrão Protocolo alternativo
-```
+
+<table><tr><th colspan="1" rowspan="2" valign="top">Nome </th><th colspan="1" rowspan="2" valign="top">Posição </th><th colspan="2">Valor </th></tr>
+<tr><td colspan="1">0 </td><td colspan="1">1 </td></tr>
+<tr><td colspan="1">RDM6300_ALT_PROT </td><td colspan="1">0 </td><td colspan="1">Protocolo padrão </td><td colspan="1">Protocolo alternativo </td></tr>
+</table>
+
 ```
 Firmware V2.1.1 R0 e posteriores.
 ```
@@ -569,15 +579,17 @@ iniciados de maneira bem sucedida possuem flag igual a 1, e possuem flag igual a
 contrário. Todas as flags são empacotadas em um vetor de bits.
 
 
-```
-Nome Posição Descrição
-STC_NETWORK 0 Dispositivo de rede
-STC_SCANNER 1 Escâner de impressão digital
-```
+| Nome         | Posição | Descrição                    |
+|--------------|---------|------------------------------|
+| STC\_NETWORK | 0       | Dispositivo de rede          |
+| STC\_SCANNER | 1       | Escâner de impressão digital |
+
 ```
 Firmware V2.1.1 R0 e posteriores.
 ```
+
 Argumentos:
+
 1) flags.
    Vetor de 16*8 bits.
 
@@ -627,13 +639,13 @@ Argumentos:
 1) Direção;
    Número de 8 bits.
 
-```
-Valor Descrição
-1 Entrada
-2 Saída
+| Valor | Descrição |
+|-------|-----------|
+| 1     | Entrada   |
+| 2     | Saída     |
+
 2) Passagens.
 Número de 32 bits. Quantidade atualizada de passagens na direção especificada.
-```
 
 ### 2.3.3.5 Notificação de timeout de liberação (0x0305) <a name="notificacao-timeout"></a>
 
