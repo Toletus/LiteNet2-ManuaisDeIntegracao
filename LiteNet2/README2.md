@@ -1,6 +1,7 @@
 # MANUAL DE COMANDOS - Toletus LiteNet2
 
 **Versão Firmware V2.1.1 R0**
+
 **Versão Manual V1.0.22**
 
 
@@ -90,7 +91,6 @@ argumentos. É boa pratica que este espaço remanescente seja preenchido com zer
 
 ### 2.2 LISTA DE COMANDOS <a name="lista-de-comandos"></a>
 
-
 | Descrição                                           | Id. de comando   | Direção  | Argumentos                     |                   |                   |              
 |-----------------------------------------------------|:-----------------|----------|--------------------------------|:------------------|:------------------|
 | libera entrada                                      | 0x0001           | >placa   | texto de 16 caracteres         |                   |                   |              
@@ -158,21 +158,24 @@ Os comandos são divididos em 4 seções:
 
 ##### 2.3.1.1 Libera entrada (0x0001) <a name="libera-entrada"></a>
 
-Libera catraca na direção de entrada com mensagem opcional. As configurações de
-direção são definidas no capítulo 2.3.2.1.
+Libera catraca na direção de entrada com mensagem opcional. As configurações de direção são definidas no capítulo 2.3.2.1.
+
+```
 Firmware V2.0.0 R0 e posteriores.
+```
 
 **Argumentos:**
 1) mensagem.
    A mensagem deve ser codificada em ASCII e com no máximo 16 caracteres de
    comprimento. Caso a mensagem não seja desejada, o campo deve ser preenchido com zeros.
 
-
 ##### 2.3.1.2 Libera saída (0x0002) <a name="libera-saida"></a>
 
-Libera catraca na direção de saída com mensagem opcional. As configurações de
-direção são definidas no capítulo 2.3.2.1.
+Libera catraca na direção de saída com mensagem opcional. As configurações de direção são definidas no capítulo 2.3.2.1.
+
+```
 Firmware V2.0.0 R0 e posteriores.
+```
 
 Argumentos:
 1) mensagem.
@@ -181,8 +184,9 @@ Argumentos:
 
 ##### 2.3.1.3 Reinicia (0x0003) <a name="reinicia"></a>
 
-```
 Reinicialização da catraca.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
 Argumentos:
@@ -192,7 +196,10 @@ Argumentos:
 
 Define mensagem de notificação de usuário. Relacionado com o comando `Notifica
 usuário` em 2.3.1.5.
+
+```
 Firmware V2.1.0 R0 e posteriores.
+```
 
 Argumentos:
 1) mensagem.
@@ -203,8 +210,9 @@ comprimento.
 
 ##### 2.3.1.5 Notifica usuário (0x0005) <a name="notifica-usuario"></a>
 
-```
 Apresenta uma notificação ao usuário da catraca, com os Parâmetros especificados.
+
+```
 Firmware V2.1.0 R0 e posteriores, mais cores a partir de V2.1.1 R0.
 ```
 Argumentos:
@@ -249,7 +257,10 @@ Argumentos:
 
 Libera um giro da catraca, ou na direção de entrada, ou na direção de saída. Uma
 mensagem pode ser apresentada opcionalmente.
+
+```
 Firmware V2.1.0 R0 e posteriores.
+```
 
 Argumentos:
 1) Mensagem.
@@ -260,10 +271,14 @@ Argumentos:
 
 Envia o sinal de `hardware reset` para os periféricos conectados. Este comando reinicia
 o módulo escâner biométrico.
-Firmware V2.1.1 R0 e posteriores.
-Argumentos:
-Não possui.
 
+```
+Firmware V2.1.1 R0 e posteriores.
+```
+
+Argumentos:
+
+Não possui.
 
 #### 2.3.2 Leitura/escrita de configurações <a name="leitura-escrita-configuracoes"></a>
 
@@ -321,7 +336,10 @@ configuradas de duas maneiras possíveis:
 ATUALIZAÇÃO:
 A configuração de controle é mantida por retrocompatibilidade. Considere utilizar o
 modo de controle estendido (2.3.2.15).
+
+```
 Firmware V2.0.0 R0 e posteriores.
+```
 
 Argumentos:
 
@@ -338,22 +356,26 @@ Argumentos:
 
 ##### 2.3.2.3 Id de dispositivo (0x0103, 0x0203) <a name="id-dispositivo"></a>
 
-O id de dispositivo permite ao anfitrião numerar cada catraca para facilitar sua
-identificação, em um ambiente com múltiplas catracas.
+O id de dispositivo permite ao anfitrião numerar cada catraca para facilitar sua identificação, em um ambiente com múltiplas catracas.
+
+```
 Firmware V2.0.0 R0 e posteriores.
+```
 
 Argumentos:
-1) 
-2) Id.
+
+1) Id.
    Número de 16 bits. Este número pode ser configurado livremente.
 
 ##### 2.3.2.4 Configuração de rede (0x0104, 0x0204) <a name="configuracao-rede"></a>
 
-
 Define as configurações de rede. O modo de endereço IP pode ser dinâmico ou estático.
 Caso estático, o endereço de IP e a mascara de rede devem ser fornecidos.
 O equipamento é compatível apenas com o protocolo Ipv4.
+
+```
 Firmware V2.0.0 R0 e posteriores.
+```
 
 Argumentos:
 1) Modo;
@@ -368,10 +390,12 @@ NOTA: A modificação deste parâmetro se efetiva apenas depois da reinicializa�
 
 ##### 2.3.2.5 Número MAC (0x0105, 0x0205) <a name="numero-mac"></a>
 
-```
 Número que identifica dispositivo de rede.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
+
 Argumentos:
 1) numero MAC.
    Número de 48 bits.
@@ -380,11 +404,12 @@ NOTA: A modificação deste parâmetro se efetiva apenas depois da reinicializa�
 
 ##### 2.3.2.6 Mensagem da tela inicial linha 1 (0x0106, 0x0206) <a name="mensagem-tela1"></a>
 
+Mensagem que aparece na tela inicial da catraca na primeira linha.
 
 ```
-Mensagem que aparece na tela inicial da catraca na primeira linha.
 Firmware V2.0.0 R0 e posteriores.
 ```
+
 Argumentos:
 1) mensagem.
    A mensagem deve ser codificada em ASCII e com no máximo 16 caracteres de
@@ -392,10 +417,12 @@ Argumentos:
 
 ##### 2.3.2.7 Mensagem da tela inicial linha 2 (0x0107, 0x0207) <a name="mensagem-tela2"></a>
 
-```
 Mensagem que aparece na tela inicial da catraca na segunda linha.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
+
 Argumentos:
 1) mensagem.
    A mensagem deve ser codificada em ASCII e com no máximo 16 caracteres de
@@ -405,7 +432,10 @@ Argumentos:
 
 A tela inicial pode apresentar mensagens ou contadores da quantidade de passagem pela
 catraca em cada direção.
+
+```
 Firmware V2.0.0 R0 e posteriores.
+```
 
 Argumentos:
 
@@ -419,9 +449,11 @@ Argumentos:
 
 ##### 2.3.2.9 Silenciar buzzer (0x0109, 0x0209) <a name="silenciar-buzzer"></a>
 
-É possível silenciar o Buzzer. Esta configuração silencia apenas os sons padrões, os
-alertas de erro não são silenciáveis.
+É possível silenciar o Buzzer. Esta configuração silencia apenas os sons padrões, os alertas de erro não são silenciáveis.
+
+```
 Firmware V2.0.0 R0 e posteriores.
+```
 
 Parâmetros:
 1) Silenciar.
@@ -434,33 +466,37 @@ Parâmetros:
 
 ##### 2.3.2.10 Tempo de liberação (0x010A, 0x020A) <a name="tempo-liberacao"></a>
 
-Quando um comando de liberação (8, 9 e 11) é enviado, a catraca irá permitir uma
-passagem durante um intervalo de tempo. Ao término deste intervalo, a liberação será suspensa,
-e a catraca voltará ao comportamento padrão conforme as configurações de fluxo (2.3.2.2 e
-2.3.2.15).
+Quando um comando de liberação (8, 9 e 11) é enviado, a catraca irá permitir uma passagem durante um intervalo de tempo. Ao término deste intervalo, a liberação será suspensa, e a catraca voltará ao comportamento padrão conforme as configurações de fluxo (2.3.2.2 e 2.3.2.15).
+
+```
 Firmware V2.0.0 R0 e posteriores.
+```
 
 Argumentos:
 1) Duração.
    Número de 16 bits. Duração do intervalo de liberação em milissegundos.
 
-
 ##### 2.3.2.11 Senha do menu (0x010B, 0x020B) <a name="senha-menu"></a>
 
-```
 Configuração de senha de acesso ao menu acessado no painel da catraca.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
+
 Argumentos:
+
 1) Senha.
    A senha deve conter até 16 dígitos codificados em ASCII.
 
 ##### 2.3.2.12 Versão de firmware (0x010C, 0x020C) <a name="versao-firmware"></a>
 
-```
 Parâmetro somente leitura que informa a versão atual do firmware.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
+
 Argumentos:
 1) Versão principal;
    Número de 8 bits.
@@ -473,8 +509,9 @@ Argumentos:
 
 ##### 2.3.2.13 Número serial (0x010D, 0x020D) <a name="numero-serial"></a>
 
-```
 Parâmetro somente leitura que informa o número de série da catraca.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
 
@@ -484,12 +521,12 @@ Argumentos:
 
 ##### 2.3.2.14 Modo de biometria (0x010E, 0x020E) <a name="modo-biometria"></a>
 
-Configuração de escâner biométrico. Define como o computador interage com o escâner
-biométrico. O escâner possui um sensor de contato que dispara quando o usuário coloca o dedo.
-No modo `automático`, é possível interagir com o escâner diretamente, utilizando a placa de
-controle como uma ponte. No modo `apensas local`, o escâner é controlado apenas pela placa,
-e possui funcionalidades limitadas.
+Configuração de escâner biométrico. Define como o computador interage com o escâner biométrico. O escâner possui um sensor de contato que dispara quando o usuário coloca o dedo. 
+No modo `automático`, é possível interagir com o escâner diretamente, utilizando a placa de controle como uma ponte. No modo `apensas local`, o escâner é controlado apenas pela placa, e possui funcionalidades limitadas.
+
+```
 Firmware V2.0.0 R2 e posteriores.
+```
 
 Argumentos:
 1) Modo.
@@ -502,19 +539,17 @@ Argumentos:
 
 ##### 2.3.2.15 Modo de controle estendido (0x010F, 0x020F) <a name="modo-controle-ext"></a>
 
-Estabelece o controle de permissões de fluxo da catraca. A catraca pode gerenciar a
-passagem de entrada e saída de maneira independente. Cada uma das direções podem ser
-configuradas de três maneiras possíveis:
+Estabelece o controle de permissões de fluxo da catraca. A catraca pode gerenciar a passagem de entrada e saída de maneira independente. Cada uma das direções podem ser configuradas de três maneiras possíveis:
 
 - Livre: a catraca está sempre liberada nesta direção;
-- Controlada: a catraca está bloqueada por padrão e pode liberar momentaneamente um
-  único giro a cada comando de liberação (2.3.1.1, 2.3.1.2 e 2.3.1.6).
-
+- Controlada: a catraca está bloqueada por padrão e pode liberar momentaneamente um   único giro a cada comando de liberação (2.3.1.1, 2.3.1.2 e 2.3.1.6).
 
 - Bloqueada: a catraca impede a passagem nesta direção.
-  Pictogramas indicam os sentidos em que a passagem é permitida com uma seta verde, e
-  o sentido em que a passagem é bloqueada, com um `X` vermelho.
-  Firmware V2.1.0 R0 e posteriores.
+  Pictogramas indicam os sentidos em que a passagem é permitida com uma seta verde, e o sentido em que a passagem é bloqueada, com um `X` vermelho.
+
+```
+Firmware V2.1.0 R0 e posteriores.
+```
 
 Argumentos:
 1) Modo;
@@ -546,7 +581,10 @@ Argumentos:
 ##### 2.3.2.16 Contador de giros (0x0110, 0x0210) <a name="contador-giros"></a>
 
 Este parâmetro registra a quantidade de passagens de entrada e de saída. Comandos deescrita (0x0110) para este parâmetro são tratadas como zeramento.
+
+```
 Firmware V2.1.0 R0 e posteriores.
+```
 
 Argumentos:
 1) Contador de entradas;
@@ -556,9 +594,7 @@ Argumentos:
 
 ##### 2.3.2.17 Flags de hardware (0x0111, 0x0211) <a name="flags-hardware"></a>
 
-Estas flags possuem detalhes técnicos de configuração de dispositivos de hardware. A
-tabela abaixo detalha cada flag. Todas as flags são empacotadas em um vetor de bits.
-
+Estas flags possuem detalhes técnicos de configuração de dispositivos de hardware. A tabela abaixo detalha cada flag. Todas as flags são empacotadas em um vetor de bits.
 
 <table><tr><th colspan="1" rowspan="2" valign="top">Nome </th><th colspan="1" rowspan="2" valign="top">Posição </th><th colspan="2">Valor </th></tr>
 <tr><td colspan="1">0 </td><td colspan="1">1 </td></tr>
@@ -568,6 +604,7 @@ tabela abaixo detalha cada flag. Todas as flags são empacotadas em um vetor de 
 ```
 Firmware V2.1.1 R0 e posteriores.
 ```
+
 Argumentos:
 1) Flags.
    Vetor de 16*8 bits. Conjunto de flags de hardware.
@@ -577,7 +614,6 @@ Argumentos:
 Parâmetro somente leitura que indica o estado de inicialização de cada módulo. Módulos
 iniciados de maneira bem sucedida possuem flag igual a 1, e possuem flag igual a 0 caso
 contrário. Todas as flags são empacotadas em um vetor de bits.
-
 
 | Nome         | Posição | Descrição                    |
 |--------------|---------|------------------------------|
@@ -600,29 +636,35 @@ mensagens são enviadas automaticamente, sem solicitação prévia.
 
 ### 2.3.3.1 Notificação de id com Rfid (0x0301) <a name="notificacao-rfid"></a>
 
-```
 Notifica a leitura de uma etiqueta RFID.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
+
 Argumentos:
+
 1) Número de identificação.
    Texto numérico com 16 caracteres em ASCII com o numero da etiqueta lida.
 
 ### 2.3.3.2 Notificação de id com código de barras (0x0302) <a name="notificacao-barra"></a>
 
-```
 Notifica a leitura de um cartão com código de barras.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
 
 Argumentos:
+
 1) Número de identificação.
    Texto numérico com 16 caracteres em ASCII com o numero do cartão lido.
 
 ### 2.3.3.3 Notificação de id com teclado (0x0303) <a name="notificacao-teclado"></a>
 
-```
 Notifica a inserção de senha no teclado.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
 Argumentos:
@@ -649,17 +691,20 @@ Número de 32 bits. Quantidade atualizada de passagens na direção especificada
 
 ### 2.3.3.5 Notificação de timeout de liberação (0x0305) <a name="notificacao-timeout"></a>
 
-Ao final do intervalo (2.3.2.10) após uma liberação sem que uma passagem ocorra, a
-liberação será suspensa, havendo um evento de timeout.
+Ao final do intervalo (2.3.2.10) após uma liberação sem que uma passagem ocorra, a liberação será suspensa, havendo um evento de timeout.
+
+```
 Firmware V2.0.0 R0 e posteriores.
+```
 
 Argumentos:
 Não há.
 
 ### 2.3.3.6 Notificação de id com biometria (0x0306) <a name="notificacao-biometria"></a>
 
-```
 Notifica evento em que escâner biométrico reconhece um usuário cadastrado.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
 Argumentos:
@@ -668,11 +713,10 @@ Argumentos:
 
 ### 2.3.3.7 Notificação de template de biometria não cadastrado (0x0307) <a name="notificacao-template"></a>
 
-```
 Notifica evento em que escâner biométrico não identifica o usuário escaneado.
+
+```
 Firmware V2.0.0 R0 e posteriores.
 ```
 Argumentos:
 Não há.
-
-
