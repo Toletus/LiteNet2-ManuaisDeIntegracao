@@ -207,7 +207,7 @@ Argumentos:
 
 comprimento.
 
-##### 2.3.1.5 Notifica usuário (0x0005) <a name="notifica-usuario"></a> `Firmware V2.1.0 R0 ou posterior, mais cores a partir de V2.1.1 R0.`
+##### 2.3.1.5 Notifica usuário (0x0005) <a name="notifica-usuario"></a> <small>Firmware V2.1.0 R0 ou posterior, mais cores a partir de V2.1.1 R0.</small>
 
 Apresenta uma notificação ao usuário da catraca, com os Parâmetros especificados.
 
@@ -330,11 +330,7 @@ passagem de entrada e saída de maneira independente. Cada uma das direções po
 configuradas de duas maneiras possíveis:
 
 - Livre: a catraca está sempre liberada nesta direção;
-- Controlada: a catraca está bloqueada por padrão e pode liberar momentaneamente um
-
-```
-único giro a cada comando de liberação (2.3.1.1, 2.3.1.2 e 2.3.1.6).
-```
+- Controlada: a catraca está bloqueada por padrão e pode liberar momentaneamente um único giro a cada comando de liberação (2.3.1.1, 2.3.1.2 e 2.3.1.6).
 
 ATUALIZAÇÃO:
 A configuração de controle é mantida por retrocompatibilidade. Considere utilizar o
