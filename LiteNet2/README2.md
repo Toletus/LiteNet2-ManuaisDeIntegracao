@@ -207,7 +207,7 @@ Argumentos:
 
 comprimento.
 
-##### 2.3.1.5 Notifica usuário (0x0005) <a name="notifica-usuario"></a> <small>Firmware V2.1.0 R0 ou posterior, mais cores a partir de V2.1.1 R0.</small>
+##### 2.3.1.5 Notifica usuário (0x0005) <a name="notifica-usuario"></a> <sup>Firmware V2.1.0 R0 ou posterior, <sup>mais cores a partir de V2.1.1 R0.</sup></sup>
 
 Apresenta uma notificação ao usuário da catraca, com os Parâmetros especificados.
 
